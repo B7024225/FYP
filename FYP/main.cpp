@@ -1,5 +1,8 @@
 #include <Windows.h>
- 
+#include "Graphics.h" 
+
+Graphics* graphics;
+
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 	if (uMsg == WM_DESTROY) {
 		PostQuitMessage(0);
@@ -30,6 +33,14 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE prevInstance, LPWSTR cmd, int
 	HWND windowhandle = CreateWindowEx(WS_EX_OVERLAPPEDWINDOW,L"MainWindow", L"FYP", WS_OVERLAPPEDWINDOW, 100, 100, rect.right - rect.left, rect.bottom - rect.top, NULL, NULL, hInstance, 0);
 	// close the window if we dont even make one 
 	if (!windowhandle)  return -1 ;
+
+	// we creat a new object of our graphics and then initialise the 2D aspect with a init fucntion
+	graphics = new Graphics();
+	if (!graphics->Init(windowhandle)) {
+		delete graphics;
+		return -1;
+	}
+
 	// display the window
 	ShowWindow(windowhandle, nCmdShow);
 
@@ -38,6 +49,8 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE prevInstance, LPWSTR cmd, int
 	while (GetMessage(&message, NULL, 0, 0)) {
 		DispatchMessage(&message);
 	}
+
+	delete graphics;
 
 	return 0;
 }
