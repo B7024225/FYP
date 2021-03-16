@@ -8,6 +8,15 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) 
 		PostQuitMessage(0);
 		return 0;
 	}
+	if (uMsg == WM_PAINT) {
+		graphics->BeginDraw();
+
+		graphics->ClearScreen(0.5f, 0.5f, 0.5f);
+
+		graphics->DrawCircle(100, 100, 50, 0.0f, 0.0f, 1.0f, 1.0f);
+
+		graphics->EndDraw();
+	}
 	return DefWindowProc(hwnd,uMsg,wParam,lParam);
 }
 

@@ -19,5 +19,16 @@ public:
 	void EndDraw() {
 		rendertarget->EndDraw();
 	}
+	void ClearScreen(float r, float g, float b) {
+		rendertarget->Clear(D2D1::ColorF(r,g,b));
+	}
+	void DrawCircle(float x, float y, float radius, float r, float g, float b,float a) {
+		ID2D1SolidColorBrush* brush;
+		rendertarget->CreateSolidColorBrush(D2D1::ColorF(r, g, b, a), &brush);
+
+		rendertarget->DrawEllipse(D2D1::Ellipse(D2D1::Point2F(x, y), radius, radius), brush, 3.0f);
+
+		brush->Release();
+	} 
 };
 
