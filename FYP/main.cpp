@@ -22,8 +22,12 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE prevInstance, LPWSTR cmd, int
 
 	RegisterClassEx(&windowclass);
 
+	// ajusting the window size
+	RECT rect = { 0,0,800,600 };
+	AdjustWindowRectEx(&rect, WS_OVERLAPPEDWINDOW,false, WS_EX_OVERLAPPEDWINDOW);
+
 	// we creat the window with parameters and return a handler to the window
-	HWND windowhandle = CreateWindow(L"MainWindow", L"FYP", WS_OVERLAPPEDWINDOW, 100, 100, 800, 600, NULL, NULL, hInstance, 0);
+	HWND windowhandle = CreateWindowEx(WS_EX_OVERLAPPEDWINDOW,L"MainWindow", L"FYP", WS_OVERLAPPEDWINDOW, 100, 100, rect.right - rect.left, rect.bottom - rect.top, NULL, NULL, hInstance, 0);
 	// close the window if we dont even make one 
 	if (!windowhandle)  return -1 ;
 	// display the window
