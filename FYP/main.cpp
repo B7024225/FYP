@@ -1,9 +1,6 @@
-#include <iostream>
-
-
-int main() {
-
-	// this is a test
-
+#include <Windows.h>
+#include <d2d1.h>
+ 
+int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE prevInstance, LPWSTR cmd, int nCmdShow) {
 	return 0;
 }
