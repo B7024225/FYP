@@ -4,10 +4,18 @@
 Graphics* graphics;
 
 LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
-	if (uMsg == WM_DESTROY) {
+
+
+	switch (uMsg) {
+	case WM_DESTROY:
 		PostQuitMessage(0);
 		return 0;
+	case WM_KEYDOWN:
+		break;
 	}
+
+
+
 	
 
 	return DefWindowProc(hwnd,uMsg,wParam,lParam);
@@ -46,31 +54,42 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE prevInstance, LPWSTR cmd, int
 	// display the window
 	ShowWindow(windowhandle, nCmdShow);
 
-	// Main message loop
 
+	// Tests
 	float y = 0.0f;
-	float ySpeed = 0.0f;
+	float x = 0.0f;
+	
+	int keyispressed = 0x8000;
 
 	MSG message;
 	message.message = WM_NULL;
+	wchar_t msg[32];
 
 	while (message.message != WM_QUIT) {
 		if (PeekMessage(&message, NULL,0,0,PM_REMOVE)) {
 			DispatchMessage(&message);
 		}
 		else {
-			//UPDATE
-			ySpeed += 3.0f;
-			y += ySpeed;
-			if (y > 600) {
-				y = 600;
-				ySpeed = -30;
+			// INPUT
+
+
+			if (GetKeyState(VK_DOWN) & keyispressed) {
+				y += 5.0f;
+			}	
+			if (GetKeyState(VK_UP) & keyispressed) {
+				y -= 5.0f;
+			}
+			if (GetKeyState(VK_LEFT) & keyispressed) {
+				x -= 5.0f;
+			}
+			if (GetKeyState(VK_RIGHT) & keyispressed) {
+				x += 5.0f;
 			}
 
 			//RENDER
 			graphics->BeginDraw();
 			graphics->ClearScreen(0.0f,0.0f,0.5f);
-			graphics->DrawCircle(375.0f,y,50.0f,1.0f,1.0f,1.0f,1.0f);
+			graphics->DrawCircle(375.0f + x, 375.0f + y,50.0f,1.0f,1.0f,1.0f,1.0f);
 
 			graphics->EndDraw();
 
