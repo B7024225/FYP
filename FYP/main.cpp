@@ -8,15 +8,8 @@ LRESULT CALLBACK WindowProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) 
 		PostQuitMessage(0);
 		return 0;
 	}
-	if (uMsg == WM_PAINT) {
-		graphics->BeginDraw();
+	
 
-		graphics->ClearScreen(0.5f, 0.5f, 0.5f);
-
-		graphics->DrawCircle(100, 100, 50, 0.0f, 0.0f, 1.0f, 1.0f);
-
-		graphics->EndDraw();
-	}
 	return DefWindowProc(hwnd,uMsg,wParam,lParam);
 }
 
@@ -53,11 +46,37 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE prevInstance, LPWSTR cmd, int
 	// display the window
 	ShowWindow(windowhandle, nCmdShow);
 
-	//Start the message loop
+	// Main message loop
+
+	float y = 0.0f;
+	float ySpeed = 0.0f;
+
 	MSG message;
-	while (GetMessage(&message, NULL, 0, 0)) {
-		DispatchMessage(&message);
+	message.message = WM_NULL;
+
+	while (message.message != WM_QUIT) {
+		if (PeekMessage(&message, NULL,0,0,PM_REMOVE)) {
+			DispatchMessage(&message);
+		}
+		else {
+			//UPDATE
+			ySpeed += 3.0f;
+			y += ySpeed;
+			if (y > 600) {
+				y = 600;
+				ySpeed = -30;
+			}
+
+			//RENDER
+			graphics->BeginDraw();
+			graphics->ClearScreen(0.0f,0.0f,0.5f);
+			graphics->DrawCircle(375.0f,y,50.0f,1.0f,1.0f,1.0f,1.0f);
+
+			graphics->EndDraw();
+
+		}
 	}
+
 
 	delete graphics;
 
