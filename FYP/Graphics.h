@@ -13,6 +13,10 @@ public:
 
 	bool Init(HWND windowhandle);
 
+	ID2D1RenderTarget* GetRenderTarget() {
+		return rendertarget;
+	}
+
 	// we begin drawing
 	void BeginDraw() {
 		rendertarget->BeginDraw();
