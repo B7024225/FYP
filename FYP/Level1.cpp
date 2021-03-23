@@ -32,11 +32,11 @@ void Level1::Update() {
 	if (GetKeyState(VK_RIGHT) & 0x8000) {
 		x += 5.0f;
 	}
-	
+	/*
 	if (GetKeyState(VK_F2) & 0x8000) {
 		GameControler::SwithLevel(new Level2);
 	}
-	
+	*/
 }
 
 void Level1::Render() {
