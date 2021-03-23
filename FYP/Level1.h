@@ -8,6 +8,9 @@ class Level1 : public GameLevel {
 	float y;
 	float x;
 
+	GameObject* player;
+	GameObject* background;
+
 public:
 	void load()	override;
 	void Unload()  override;
