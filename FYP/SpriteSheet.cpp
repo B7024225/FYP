@@ -61,10 +61,10 @@ SpriteSheet::~SpriteSheet() {
 	if (bitmap) bitmap->Release();
 }
 //Draw Image at 0.0f
-void SpriteSheet::Draw(float x, float y) {
+void SpriteSheet::Draw(float x, float y,int scaleX,int scaleY) {
 	graphics->GetRenderTarget()->DrawBitmap(
 		bitmap,
-		D2D1::RectF(x,y,bitmap->GetSize().width,bitmap->GetSize().height),
+		D2D1::RectF(x / (1 *scaleX),y / (1 *scaleY),(bitmap->GetSize().width + x) / (1 * scaleX),(bitmap->GetSize().height + y) / (1 * scaleY)),
 		1.0f,
 		D2D1_BITMAP_INTERPOLATION_MODE::D2D1_BITMAP_INTERPOLATION_MODE_NEAREST_NEIGHBOR,
 		D2D1::RectF(0.0f, 0.0f, bitmap->GetSize().width, bitmap->GetSize().height)

@@ -13,5 +13,5 @@ public:
 	//destrtuctor
 	~SpriteSheet();
 
-	void Draw(float x,float y);
+	void Draw(float x,float y,int scaleX,int scaley);
 };

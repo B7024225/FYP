@@ -144,6 +144,7 @@
   <ItemGroup>
     <ClCompile Include="GameControler.cpp" />
     <ClCompile Include="GameLevel.cpp" />
+    <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="Level1.cpp" />
     <ClCompile Include="main.cpp" />
@@ -152,12 +153,17 @@
   <ItemGroup>
     <ClInclude Include="GameControler.h" />
     <ClInclude Include="GameLevel.h" />
+    <ClInclude Include="GameObject.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Level1.h" />
     <ClInclude Include="levels.h" />
+    <ClInclude Include="position.h" />
     <ClInclude Include="SpriteSheet.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="amongus.png" />
+    <Image Include="background.jpg" />
+    <Image Include="mario.png" />
     <Image Include="test.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

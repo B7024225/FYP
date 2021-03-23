@@ -34,7 +34,7 @@ int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE prevInstance, LPWSTR cmd, int
 	RegisterClassEx(&windowclass);
 
 	// ajusting the window size
-	RECT rect = { 0,0,800,600 };
+	RECT rect = { 0,0,1280,720 };
 	AdjustWindowRectEx(&rect, WS_OVERLAPPEDWINDOW,false, WS_EX_OVERLAPPEDWINDOW);
 
 	// we creat the window with parameters and return a handler to the window
