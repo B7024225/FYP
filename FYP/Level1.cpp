@@ -22,11 +22,13 @@ void Level1::Unload() {
 
 void Level1::Update() {
 	
+	player->pos.x = x;
+	player->pos.y = y;
 	// Movment
 	if (GetKeyState(VK_DOWN) & 0x8000) {
 		y += 5.0f;
 	}
-	if (GetKeyState(VK_UP) & 0x8000) {
+	if (GetKeyState(VK_UP)& 0x8000) {
 		y -= 5.0f;
 	}
 	if (GetKeyState(VK_LEFT) & 0x8000) {
@@ -35,8 +37,14 @@ void Level1::Update() {
 	if (GetKeyState(VK_RIGHT) & 0x8000) {
 		x += 15.0f;
 	}
-	player->pos.x = x;
 
+	if (y > 2100.0f) {
+		y = 2100.0f;
+
+	}	
+	if (y < 1500.0f) {
+		y = 2100.0f;
+	}
 
 }
 
