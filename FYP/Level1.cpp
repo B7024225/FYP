@@ -15,6 +15,8 @@ void Level1::load() {
 	player->pos.y = 2100.0f;
 	background->setImage(L"background.jpg");
 
+	
+
 }
 void Level1::Unload() {
 
@@ -39,6 +41,9 @@ void Level1::Update() {
 	if (GetKeyState(VK_RIGHT) & 0x8000) {
 		x += 15.0f;
 	}
+	if (GetKeyState(VK_F1) & 0x8000) {
+		GameControler::SwithLevel(new Level2);
+	}
 
 	if (y > 2100.0f) {
 		y = 2100.0f;
@@ -54,7 +59,7 @@ void Level1::Update() {
 
 void Level1::Render() {
 
-	graphics->ClearScreen(0.0f, 0.0f, 1.0f);
+	graphics->ClearScreen(0.0f, 0.0f, 1.0f); // dont tuch
 	background->draw();
 	player->draw();
 }
