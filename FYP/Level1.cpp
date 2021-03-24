@@ -22,14 +22,16 @@ void Level1::Unload() {
 
 void Level1::Update() {
 	
+	float gravity = 10.0f;
+
 	player->pos.x = x;
 	player->pos.y = y;
 	// Movment
 	if (GetKeyState(VK_DOWN) & 0x8000) {
-		y += 5.0f;
+		y += 25.0f;
 	}
 	if (GetKeyState(VK_UP)& 0x8000) {
-		y -= 5.0f;
+		y -= 25.0f;
 	}
 	if (GetKeyState(VK_LEFT) & 0x8000) {
 		x -= 15.0f;
@@ -42,10 +44,12 @@ void Level1::Update() {
 		y = 2100.0f;
 
 	}	
+	/*
 	if (y < 1500.0f) {
-		y = 2100.0f;
+		y +=  5;
 	}
-
+	*/
+	y += gravity;
 }
 
 void Level1::Render() {
